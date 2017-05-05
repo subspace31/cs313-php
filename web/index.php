@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="assets/img/favicon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>CS 313</title>
+	<title>CS 313 Homepage</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -22,34 +18,7 @@
 </head>
     <body>       
         <!-- Navbar  --->
-        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark bg-primary">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <strong>CS 313</strong>
-                </a>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link">Home<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item dropdown btn-group">
-                            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Projects<span class="sr-only">Toggle Dropdown</span>
-                            </a>
-                            <div class="dropdown-menu dropdown" aria-labelledby="dropdown1">
-                                <a class="dropdown-item" href="projects.html">All</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="projects.html">Week 3</a>
-                                <a class="dropdown-item" href="projects.html">Week 4</a>
-                                <a class="dropdown-item" href="projects.html">Week 5</a>
-                                <a class="dropdown-item" href="projects.html">Week 6</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-        </nav>
+        <?php include 'navbar.php';?>
         
         <!--- Body   --->
         <header class="edge-header grey lighten-2">
@@ -165,7 +134,6 @@
         <div class="footer-copyright">
             <div class="container-fluid">
                 Page content sourced from <a href="https://en.wikipedia.org/wiki/Star_Ocean:_Till_the_End_of_Time"> Wikipedia page </a>.
-                
             </div>
         </div>
     </footer>

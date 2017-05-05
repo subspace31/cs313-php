@@ -1,42 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>CS 313 Homepage</title>
+        <title>CS 313 Projects</title>
         <meta charset="utf-8">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/mdb.css" rel="stylesheet"/>
         <link href="css/main.css" rel="stylesheet"/>
     </head>
 <body>
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-dark bg-primary">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <strong>CS 313</strong>
-                </a>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item dropdown btn-group">
-                            <a class="nav-link active dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Projects<span class="sr-only">Toggle Dropdown</span>
-                            </a>
-                            <div class="dropdown-menu dropdown" aria-labelledby="dropdown1">
-                                <a class="dropdown-item" href="projects.html">All</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="projects.html">Week 3</a>
-                                <a class="dropdown-item" href="projects.html">Week 4</a>
-                                <a class="dropdown-item" href="projects.html">Week 5</a>
-                                <a class="dropdown-item" href="projects.html">Week 6</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-        </nav>
+    <?php include 'navbar.php';?>
     
     <header class="edge-header grey lighten-2">
     </header>
@@ -94,7 +69,7 @@
                         <p>Current Week - Homepage</p>
                     </div>
                     <div class="col-sm-4 card"> 
-                        <a href="shoping.html"><img src="https://placehold.it/1200x640?text=IMAGE" class="img-responsive hoverable" alt="Image"></a>
+                        <a href="shopping.php"><img src="https://placehold.it/1200x640?text=IMAGE" class="img-responsive hoverable" alt="Image"></a>
                         <p>Next Week - Shopping Cart</p>   
                     </div>
                     <div class="col-sm-4 card">
@@ -111,11 +86,7 @@
     </div>
 </body>
     <footer class="page-footer blue">
-        <div class="footer-copyright">
-            <div class="container-fluid">
-                <p>© Timothy Harris. 2017</p> 
-            </div>
-        </div>
+        <?php include 'footer.php';?>
     </footer>
     
     <script src="js/jquery-3.1.1.js" type="text/javascript"></script>

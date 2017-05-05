@@ -9,6 +9,42 @@
 
 .row {
     padding: 10px;
+    overflow: hidden;
+}
+
+.media img{
+    max-width: 200px;
+    overflow: hidden;
+}
+
+.shopping-cart {
+    position: fixed;
+    right: 2em;
+    top: 5em;
+}
+
+.shopping-cart .fa {
+    color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.counter {
+    position: absolute;
+    margin-left: 86px;
+    margin-top: -62px;
+    background-color: red;
+    color: #fff;
+    padding: 1px 7px;
+    font-size: 11px;
+    z-index: 2;
+    -webkit-border-radius: 10rem;
+    -moz-border-radius: 10rem;
+    -ms-border-radius: 10rem;
+    -o-border-radius: 10rem;
+    border-radius: 10rem;
 }
 
 .carousel-control-prev {
