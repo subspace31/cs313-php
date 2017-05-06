@@ -18,7 +18,7 @@
         <link href="../css/main.css" rel="stylesheet"/>
     </head>
 <body>    
-    <?php include '../navbar.php';?>
+    <?php include 'navbar2.php';?>
     
     <header class="edge-header grey lighten-2">
     </header>
