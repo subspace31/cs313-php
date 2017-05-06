@@ -12,7 +12,7 @@
         $majors = array("Computer Science", "Web Design and Development", "Computer Information Technology", "Computer Engineering", "Software Engineering");
 
         foreach ($majors as $value) {
-            echo '<input type="radio" name="major" value="'.$value.'">  ' . $value . '<br>';
+            echo '<input type="radio" name="major" value="' . $value . '">  ' . $value . '<br>';
         }
         ?>
     

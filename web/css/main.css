@@ -7,6 +7,10 @@
     overflow: hidden;
 }
 
+td img {
+    max-width: 32px;
+}
+
 .row {
     padding: 10px;
     overflow: hidden;

@@ -23,6 +23,7 @@
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>
 
                     <div class="carousel-inner" role="listbox">
@@ -39,7 +40,18 @@
                         </div>
                         <div class="carousel-item">
                             <div class="view overlay hm-black-light">
-                                <img src="https://placehold.it/1200x400?text=Another Image" alt="Image">
+                                <img src="img/shopping-lg.jpg" alt="Image">
+                                <div class="mask flex-center">
+                                    <div class="carousel-caption">
+                                        <h3>Week 3</h3>
+                                        <p>Shopping Cart</p>
+                                    </div>  
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="carousel-item">
+                            <div class="view overlay hm-black-light">
+                                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
                                 <div class="mask flex-center">
                                     <div class="carousel-caption">
                                         <h3>Week 3</h3>
@@ -61,23 +73,83 @@
                 </div>
             </div>
             
-            <div class="container text-center">    
-                <h3>Server side Web Development</h3><br>
-                <div class="row">
-                    <div class="col-sm-4 card">
+            <div class="container-fluid text-center">    
+                <h3>Server Side Web Development</h3><br>
+                <div class="card">
+                    <div class="row">
+                    <div class="col-sm-4">
                         <a href="index.html"><img src="img/htmlcode-sm.jpg" class="img-responsive hoverable" alt="Image"></a>
-                        <p>Current Week - Homepage</p>
+                        <p>Previous Week - Homepage</p>
                     </div>
-                    <div class="col-sm-4 card"> 
-                        <a href="shopping.php"><img src="https://placehold.it/1200x640?text=IMAGE" class="img-responsive hoverable" alt="Image"></a>
-                        <p>Next Week - Shopping Cart</p>   
+                    <div class="col-sm-4"> 
+                        <a href="shopping/shopping.php"><img src="img/shopping-sm.jpg" class="img-responsive hoverable" alt="Image"></a>
+                        <p>This Week - Shopping Cart</p>   
                     </div>
-                    <div class="col-sm-4 card">
-                        <div class="well">
-                            <p>Week 4 - ""</p>
+                     <div class="col-sm-4"> 
+                        <a href="#"><img src="https://placehold.it/1200x640?text=IMAGE" class="img-responsive hoverable" alt="Image"></a>
+                        <p>Next Week - ...</p>   
+                    </div>
                         </div>
-                        <div class="well">
-                            <p>Week 5 - ""</p>
+                </div>
+                    <div class="row pt-3">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <h5>Team Assignments</h5>
+                            <div class="">
+                                <p>Week 3 - "PHP Forms"</p>
+                            </div>
+                            <div class="">
+                                <p>Week 4 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p>Week 5 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p> ...</p>
+                            </div>
+                            <div class="">
+                                <p> ...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <h5>Prove Assignments</h5>
+                            <div class="well">
+                                <p>Week 1 - "Hello World"</p>
+                            </div>
+                            <div class="well">
+                                <p>Week 2 - "Homepage"</p>
+                            </div>
+                            <div class="well">
+                                <p>Week 3 - "Shopping Cart"</p>
+                            </div>
+                            <div class="well">
+                                <p>Week 4 - "..."</p>
+                            </div>
+                            <div class="well">
+                                <p>Week 5 - "..."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <h5>Project</h5>
+                            <div class="">
+                                <p>Week 1 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p>Week 2 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p>Week 3 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p>Week 4 - "..."</p>
+                            </div>
+                            <div class="">
+                                <p>Week 5 - "..."</p>
+                            </div>
                         </div>
                     </div>
                 </div>
