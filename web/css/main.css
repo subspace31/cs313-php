@@ -7,6 +7,20 @@
     overflow: hidden;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+.view-head {
+    height: 45%;
+    background: url("http://www.watermelonstand.com/wp-content/uploads/2014/04/webbackchalk26.jpg") center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 td img {
     max-width: 32px;
 }
