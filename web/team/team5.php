@@ -1,11 +1,11 @@
 <?php
 
 $servername = "localhost";
-$username = "username";
-$password = "password";
+$username = "postgress";
+$password = "";
 
 try {
-    $conn = new PDO("mysql:host=$127.0.0.1;dbname=scriptures", $username, $password);
+    $conn = new PDO("mysql:host=$127.0.0.1;dbname=public", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully";
