@@ -48,11 +48,7 @@ CREATE TABLE ordered_items (
   ,order_id       INT     REFERENCES orders(order_id)
 );
 
-ALTER TABLE categories ADD CONSTRAINT categories_id_pk PRIMARY KEY (id);
-
 create table categories (
-  id serial
+  id serial PRIMARY KEY
   ,category TEXT NOT NULL
 );
-
-DELETE FROM items where items.item_id > 0;
