@@ -54,8 +54,8 @@
                                 <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
                                 <div class="mask flex-center">
                                     <div class="carousel-caption">
-                                        <h3>Week 3</h3>
-                                        <p>Shopping Cart</p>
+                                        <h3>Week 5</h3>
+                                        <p>Database Retrieval</p>
                                     </div>  
                                 </div>
                             </div> 
@@ -99,7 +99,7 @@
                                 <p>Week 3 - "PHP Forms"</p>
                             </div>
                             <div class="">
-                                <p>Week 4 - "..."</p>
+                                <p>Week 4 - "Database"</p>
                             </div>
                             <div class="">
                                 <p>Week 5 - "..."</p>
@@ -136,19 +136,19 @@
                         <div class="card">
                             <h5>Project</h5>
                             <div class="">
-                                <p>Week 1 - "..."</p>
+                                <p>Week 4 - "Database Creation"</p>
                             </div>
                             <div class="">
-                                <p>Week 2 - "..."</p>
+                                <a href="project/index.php">Week 5 - "Database Retrieval"</a>
                             </div>
                             <div class="">
-                                <p>Week 3 - "..."</p>
+                                <p>Week 6 - "..."</p>
                             </div>
                             <div class="">
-                                <p>Week 4 - "..."</p>
+                                <p>Week  - "..."</p>
                             </div>
                             <div class="">
-                                <p>Week 5 - "..."</p>
+                                <p>Week  - "..."</p>
                             </div>
                         </div>
                     </div>
