@@ -1,7 +1,11 @@
 $(document).ready(function(){
-    $("button").click(function(){
-        $(".counter").show();
-    });
+    if ($('.counter').text() > 0) {
+        $('.counter').show();
+    } else {
+        $('[onclick*="addCart"]').click(function () {
+            $(".counter").show();
+        });
+    }
 });
 
 var cartCount = "0";

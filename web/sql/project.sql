@@ -15,7 +15,7 @@ create TABLE items (
   ,seller_id    INT     REFERENCES sellers(seller_id) NOT NULL
   ,name         text    NOT NULL
   ,description  text
-  ,cost         money   NOT NULL
+  ,cost         FLOAT   NOT NULL
 );
 
 CREATE TABLE address (
@@ -48,4 +48,11 @@ CREATE TABLE ordered_items (
   ,order_id       INT     REFERENCES orders(order_id)
 );
 
-ALTER TABLE orders ADD CONSTRAINT orders_address_id_fkey FOREIGN KEY (address_id) REFERENCES address(address_id);
+ALTER TABLE categories ADD CONSTRAINT categories_id_pk PRIMARY KEY (id);
+
+create table categories (
+  id serial
+  ,category TEXT NOT NULL
+);
+
+DELETE FROM items where items.item_id > 0;

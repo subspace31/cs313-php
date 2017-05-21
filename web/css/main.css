@@ -41,6 +41,10 @@ td img {
     top: 5em;
 }
 
+.dropdown-menu button {
+    cursor: hand;
+}
+
 .shopping-cart .fa {
     color: #fff;
 }

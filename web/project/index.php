@@ -36,13 +36,13 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </a>
                     <div class="dropdown-menu dropdown" aria-labelledby="dropdown1">
-                        <a class="dropdown-item" href="#">Browse All</a>
+                        <a class="dropdown-item" href="shop.php">Browse All</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Chalkboard Art</a>
-                        <a class="dropdown-item" href="#">Herblore Classes</a>
-                        <a class="dropdown-item" href="#">Home Remedies</a>
-                        <a class="dropdown-item" href="#">Painted Heirlooms</a>
-                        <a class="dropdown-item" href="#">Custom Orders</a>
+                        <a class="dropdown-item" href="shop.php">Chalkboard Art</a>
+                        <a class="dropdown-item" href="shop.php">Herblore Classes</a>
+                        <a class="dropdown-item" href="shop.php">Home Remedies</a>
+                        <a class="dropdown-item" href="shop.php">Painted Heirlooms</a>
+                        <a class="dropdown-item" href="shop.php">Custom Orders</a>
                     </div>
                 </li>
             </ul>
@@ -137,7 +137,7 @@
                     <img class="d-flex mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt="...">
                     <div class="media-body">
                         <ul>
-                            <li><h5>Chalkboard Art</h5></li>
+                            <li><h5>Herblore Class</h5></li>
                             <li>
                                 What Chalkboard Art is and why people should buy it. 3-5 sentences.
                                 "http://www.watermelonstand.com/wp-content/uploads/2014/04/webbackchalk26.jpg"
@@ -159,7 +159,49 @@
                     <img class="d-flex mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt="...">
                     <div class="media-body">
                         <ul>
-                            <li><h5>Chalkboard Art</h5></li>
+                            <li><h5>Home Remidies</h5></li>
+                            <li>
+                                What Chalkboard Art is and why people should buy it. 3-5 sentences.
+                            </li>
+                            <li><br></li>
+
+                            <li></li>
+                            <li>
+                                <div class="d-flex flex-row-reverse btn-group">
+                                    <button class="btn btn-lg pink lighten-3" onclick="" type="button">Shop Now</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled p-3">
+                <li class="media">
+                    <img class="d-flex mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt="...">
+                    <div class="media-body">
+                        <ul>
+                            <li><h5>Painted Heirlooms</h5></li>
+                            <li>
+                                What Chalkboard Art is and why people should buy it. 3-5 sentences.
+                            </li>
+                            <li><br></li>
+
+                            <li></li>
+                            <li>
+                                <div class="d-flex flex-row-reverse btn-group">
+                                    <button class="btn btn-lg pink lighten-3" onclick="" type="button">Shop Now</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled p-3">
+                <li class="media">
+                    <img class="d-flex mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt="...">
+                    <div class="media-body">
+                        <ul>
+                            <li><h5>Custom Orders</h5></li>
                             <li>
                                 What Chalkboard Art is and why people should buy it. 3-5 sentences.
                             </li>
