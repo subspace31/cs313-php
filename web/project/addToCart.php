@@ -17,4 +17,3 @@ if (array_key_exists("item$num", $_SESSION)) {
 }
 
 echo $count;
-?>

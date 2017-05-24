@@ -1,33 +1,34 @@
 create table users (
-   user_id  serial    PRIMARY KEY NOT NULL
+   user_id  serial    PRIMARY KEY
   ,email    char(80)  NOT NULL
   ,password char(80)  NOT NULL
 );
 
 create table sellers (
-   seller_id  SERIAL    PRIMARY KEY NOT NULL
+   seller_id  SERIAL    PRIMARY KEY
   ,email      char(80)  NOT NULL
   ,password   char(80)  NOT NULL
 );
 
 create TABLE items (
-  item_id       SERIAL  PRIMARY KEY NOT NULL
-  ,seller_id    INT     REFERENCES sellers(seller_id) NOT NULL
+  item_id       SERIAL  PRIMARY KEY
+  ,seller_id    INT     REFERENCES sellers(seller_id)
   ,name         text    NOT NULL
   ,description  text
-  ,cost         FLOAT   NOT NULL
+  ,cost         NUMERIC(9,2)   NOT NULL
+  ,category_id int    REFERENCES categories(id)
 );
 
 CREATE TABLE address (
-  address_id  SERIAL   PRIMARY KEY NOT NULL
-  ,user_id    INT      REFERENCES users(user_id) NOT NULL
+  address_id  SERIAL   PRIMARY KEY
+  ,user_id    INT      REFERENCES users(user_id)
   ,name       text     NOT NULL
   ,address    text    NOT NULL
 );
 
 CREATE TABLE cards (
-  card_id       SERIAL  PRIMARY KEY NOT NULL
-  ,user_id      INT     REFERENCES users(user_id) NOT NULL
+  card_id       SERIAL  PRIMARY KEY
+  ,user_id      INT     REFERENCES users(user_id)
   ,card_name    text    NOT NULL
   ,holder_name  text    NOT NULL
   ,card_number  INT     NOT NULL
@@ -36,14 +37,14 @@ CREATE TABLE cards (
 );
 
 create TABLE orders (
-  order_id    SERIAL  PRIMARY KEY NOT NULL
+  order_id    SERIAL  PRIMARY KEY
   ,user_id    INT     REFERENCES users(user_id)
   ,address_id INT     REFERENCES address(address_id)
   ,card_id    INT     REFERENCES cards(card_id)
 );
 
 CREATE TABLE ordered_items (
-  ordered_item_id SERIAL  PRIMARY KEY NOT NULL
+  ordered_item_id SERIAL  PRIMARY KEY
   ,item_id        INT     REFERENCES items(item_id)
   ,order_id       INT     REFERENCES orders(order_id)
 );

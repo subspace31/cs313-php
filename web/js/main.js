@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$().ready(function(){
     if ($('.counter').text() > 0) {
         $('.counter').show();
     } else {
@@ -7,6 +7,7 @@ $(document).ready(function(){
         });
     }
 });
+
 
 var cartCount = "0";
 
@@ -41,5 +42,22 @@ function removeCart(itemNum) {
     	// fail stuff
     }).always(function(data) { // always runs, success or fail
         console.log('always');
+    });
+}
+
+function signup(userInput, passInput) {
+    username = $('#' + userInput).val();
+    password = $('#' + passInput).val();
+
+    var formData = {username:username, password:password}; //Array
+    console.log(formData);
+    $.post({
+        url : "createUser.php",
+        data : formData,
+    }).done(function(data) { // success method
+        $('#' + userInput).val(data);
+        console.log(data);
+    }).fail(function(data) { // fail method
+        // fail stuff
     });
 }

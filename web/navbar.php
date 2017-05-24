@@ -19,7 +19,7 @@ echo '<nav class="navbar fixed-top navbar-toggleable-md navbar-dark bg-primary">
                                 <a class="dropdown-item" href="projects.php">All</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="shopping/shopping.php">Week 3 - Shoppoing Cart</a>
-                                <a class="dropdown-item" href="projects.php">Week 4</a>
+                                <a class="dropdown-item" href="project/index.php">Week 4</a>
                                 <a class="dropdown-item" href="project/index.php">Week 5</a>
                                 <a class="dropdown-item" href="projects.php">Week 6</a>
                             </div>

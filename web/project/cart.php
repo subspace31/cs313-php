@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>CS 313 Projects</title>
+        <title>The Watermelon Stand</title>
         <meta charset="utf-8">
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +64,7 @@
                             $total += $subtotal;
                             if ($name != NULL) {
                                 echo '<tr id="'.$key.'">
-                                    <td><img class="hoverable" src="' . $pic . '"></img> ' . $name  . '</td>
+                                    <td><img class="hoverable" src="' . $pic . '">' . $name  . '</td>
                                     <td>
                                         <div class="text-center">
                                             '. $qty .'   
@@ -84,7 +84,7 @@
                 </table>
                 <div class="row">
                     <div class="col-lg-6">
-                       <a class="btn pink lighten-4 pull-left" href="shopping.php">Continue Shopping</a>
+                       <a class="btn pink lighten-4 pull-left" href="shop.php">Continue Shopping</a>
                     </div>
                      <div class="col-lg-6">
                         <a class="btn pink lighten-4 pull-right" href="checkout.php">Check Out</a>
@@ -93,81 +93,12 @@
             </div>
         </div>            
 </body>
-    <footer class="page-footer center-on-small-only pink lighten-4 brown-text mt-0">
+    <?php include 'footer.php' ?>
 
-        <!--Footer Links-->
-        <div class="container-fluid">
-            <div class="row">
+    <script src="../js/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/mdb.js" type="text/javascript"></script>
+    <script src="../js/tether.js"></script>
 
-                <!--First column-->
-                <div class="col-md-3 offset-lg-1 hidden-lg-down">
-                    <h5 class="title"></h5>
-                    <p> </p>
-
-                    <p></p>
-                </div>
-                <!--/.First column-->
-
-                <hr class="hidden-md-up">
-
-                <!--Second column-->
-                <div class="col-lg-2 col-md-4 offset-lg-1">
-                    <h5 class="title">First column</h5>
-                    <ul>
-                        <li><a class="brown-text" href="#!">Link 1</a></li>
-                        <li><a class="brown-text" href="#!">Link 2</a></li>
-                        <li><a class="brown-text" href="#!">Link 3</a></li>
-                        <li><a class="brown-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <!--/.Second column-->
-
-                <hr class="hidden-md-up">
-
-                <!--Third column-->
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="title">Second column</h5>
-                    <ul>
-                        <li><a class="brown-text" href="#!">Link 1</a></li>
-                        <li><a class="brown-text" href="#!">Link 2</a></li>
-                        <li><a class="brown-text" href="#!">Link 3</a></li>
-                        <li><a class="brown-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <!--/.Third column-->
-
-                <hr class="hidden-md-up">
-
-                <!--Fourth column-->
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="title">Third column</h5>
-                    <ul>
-                        <li><a class="brown-text" href="#!">Link 1</a></li>
-                        <li><a class="brown-text" href="#!">Link 2</a></li>
-                        <li><a class="brown-text" href="#!">Link 3</a></li>
-                        <li><a class="brown-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <!--/.Fourth column-->
-
-            </div>
-        </div>
-
-        <!--Copyright-->
-        <div class="footer-copyright brown-text">
-            <div class="container-fluid">
-                © 2015 Copyright: <a class="brown-text" href="http://www.watermelonstand.com"> WatermelonStand.com </a>
-
-            </div>
-        </div>
-        <!--/.Copyright-->
-
-    </footer>
-
-        <script src="../js/jquery-3.1.1.js"></script>
-        <script src="../js/tether.js"></script>
-        <script src="../js/bootstrap.js"></script>
-        <script src="../js/mdb.js"></script>
-
-        <script src="../js/main.js"></script>
+    <script src="../js/main.js"></script>
 </html>
