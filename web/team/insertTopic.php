@@ -45,7 +45,8 @@ $stmt = $db->prepare("insert into topicLink (idScripture, idTopic) VALUES (
 :id
 ,(select id
   from topic
-  where topic.name = " . $topic . ")
+  where topic.name = :topic)
 );");
 $stmt->bindParam(':id', $db->lastInsertId());
+$stmt->bindParam(':topic', $topic);
 $stmt->execute();
