@@ -5,7 +5,7 @@ create table  topic (
 
 insert into topic (name) values ('Faith'), ('Sacrifice'), ('Charity');
 
-create table links (
+create table topicLink (
    id serial PRIMARY KEY
   ,scripture_id INT REFERENCES scriptures(id)
   ,topic_id INT REFERENCES topic(id)
