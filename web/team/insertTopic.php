@@ -41,7 +41,7 @@ $stmt->bindParam(':content', $content);
 $stmt->execute();
 
 
-$stmt = $db->prepare("insert into topicLink (idScripture, idTopic) VALUES (
+$stmt = $db->prepare("insert into topicLink (scripture_id, topic_id) VALUES (
 :id
 ,(select id
   from topic
