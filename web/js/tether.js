@@ -68,7 +68,7 @@ var zeroPosCache = {};
 var getOrigin = function getOrigin(doc) {
   // getBoundingClientRect is unfortunately too accurate.  It introduces a pixel or two of
   // jitter as the user scrolls that messes with our ability to detect if two positions
-  // are equivilant or not.  We place an element at the top left of the page that will
+  // are equivilant or not.  We place an showCat at the top left of the page that will
   // get the same jitter, so we can cancel the two out.
   var node = doc._tetherZeroElement;
   if (typeof node === 'undefined') {
@@ -626,11 +626,11 @@ var TetherClass = (function () {
       this.options = extend(defaults, options);
 
       var _options = this.options;
-      var element = _options.element;
+      var element = _options.showCat;
       var target = _options.target;
       var targetModifier = _options.targetModifier;
 
-      this.element = element;
+      this.showCat = showCat;
       this.target = target;
       this.targetModifier = targetModifier;
 
@@ -644,7 +644,7 @@ var TetherClass = (function () {
 
       ['element', 'target'].forEach(function (key) {
         if (typeof _this2[key] === 'undefined') {
-          throw new Error('Tether Error: Both element and target must be defined');
+          throw new Error('Tether Error: Both showCat and target must be defined');
         }
 
         if (typeof _this2[key].jquery !== 'undefined') {
@@ -654,7 +654,7 @@ var TetherClass = (function () {
         }
       });
 
-      addClass(this.element, this.getClass('element'));
+      addClass(this.showCat, this.getClass('element'));
       if (!(this.options.addTargetClasses === false)) {
         addClass(this.target, this.getClass('target'));
       }
@@ -801,7 +801,7 @@ var TetherClass = (function () {
       if (!(this.options.addTargetClasses === false)) {
         addClass(this.target, this.getClass('enabled'));
       }
-      addClass(this.element, this.getClass('enabled'));
+      addClass(this.showCat, this.getClass('enabled'));
       this.enabled = true;
 
       if (this.scrollParent !== document) {
@@ -816,7 +816,7 @@ var TetherClass = (function () {
     key: 'disable',
     value: function disable() {
       removeClass(this.target, this.getClass('enabled'));
-      removeClass(this.element, this.getClass('enabled'));
+      removeClass(this.showCat, this.getClass('enabled'));
       this.enabled = false;
 
       if (typeof this.scrollParent !== 'undefined') {
@@ -859,10 +859,10 @@ var TetherClass = (function () {
       var add = this._addAttachClasses;
 
       if (elementAttach.top) {
-        add.push(this.getClass('element-attached') + '-' + elementAttach.top);
+        add.push(this.getClass('showCat-attached') + '-' + elementAttach.top);
       }
       if (elementAttach.left) {
-        add.push(this.getClass('element-attached') + '-' + elementAttach.left);
+        add.push(this.getClass('showCat-attached') + '-' + elementAttach.left);
       }
       if (targetAttach.top) {
         add.push(this.getClass('target-attached') + '-' + targetAttach.top);
@@ -873,7 +873,7 @@ var TetherClass = (function () {
 
       var all = [];
       sides.forEach(function (side) {
-        all.push(_this4.getClass('element-attached') + '-' + side);
+        all.push(_this4.getClass('showCat-attached') + '-' + side);
         all.push(_this4.getClass('target-attached') + '-' + side);
       });
 
@@ -882,7 +882,7 @@ var TetherClass = (function () {
           return;
         }
 
-        updateClasses(_this4.element, _this4._addAttachClasses, all);
+        updateClasses(_this4.showCat, _this4._addAttachClasses, all);
         if (!(_this4.options.addTargetClasses === false)) {
           updateClasses(_this4.target, _this4._addAttachClasses, all);
         }
@@ -911,8 +911,8 @@ var TetherClass = (function () {
 
       this.updateAttachClasses(this.attachment, targetAttachment);
 
-      var elementPos = this.cache('element-bounds', function () {
-        return getBounds(_this5.element);
+      var elementPos = this.cache('showCat-bounds', function () {
+        return getBounds(_this5.showCat);
       });
 
       var width = elementPos.width;
@@ -945,7 +945,7 @@ var TetherClass = (function () {
       offset = addOffset(offset, manualOffset);
       targetOffset = addOffset(targetOffset, manualTargetOffset);
 
-      // It's now our goal to make (element position + offset) == (target position + target offset)
+      // It's now our goal to make (showCat position + offset) == (target position + target offset)
       var left = targetPos.left + targetOffset.left - offset.left;
       var top = targetPos.top + targetOffset.top - offset.top;
 
@@ -976,11 +976,11 @@ var TetherClass = (function () {
       }
 
       // We describe the position three different ways to give the optimizer
-      // a chance to decide the best possible way to position the element
+      // a chance to decide the best possible way to position the showCat
       // with the fewest repaints.
       var next = {
         // It's position relative to the page (absolute positioning when
-        // the element is a child of the body)
+        // the showCat is a child of the body)
         page: {
           top: top,
           left: left
@@ -1038,7 +1038,7 @@ var TetherClass = (function () {
               var scrollLeft = offsetParent.scrollLeft;
 
               // It's position relative to the target's offset parent (absolute positioning when
-              // the element is moved to be a child of the target's offset parent).
+              // the showCat is moved to be a child of the target's offset parent).
               next.offset = {
                 top: next.page.top - offsetPosition.top + scrollTop - offsetBorder.top,
                 left: next.page.left - offsetPosition.left + scrollLeft - offsetBorder.left
@@ -1072,7 +1072,7 @@ var TetherClass = (function () {
     value: function move(pos) {
       var _this6 = this;
 
-      if (!(typeof this.element.parentNode !== 'undefined')) {
+      if (!(typeof this.showCat.parentNode !== 'undefined')) {
         return;
       }
 
@@ -1158,10 +1158,10 @@ var TetherClass = (function () {
             return getOffsetParent(_this6.target);
           });
 
-          if (getOffsetParent(_this6.element) !== offsetParent) {
+          if (getOffsetParent(_this6.showCat) !== offsetParent) {
             defer(function () {
-              _this6.element.parentNode.removeChild(_this6.element);
-              offsetParent.appendChild(_this6.element);
+              _this6.showCat.parentNode.removeChild(_this6.showCat);
+              offsetParent.appendChild(_this6.showCat);
             });
           }
 
@@ -1175,7 +1175,7 @@ var TetherClass = (function () {
 
       if (!moved) {
         var offsetParentIsBody = true;
-        var currentNode = this.element.parentNode;
+        var currentNode = this.showCat.parentNode;
         while (currentNode && currentNode.tagName !== 'BODY') {
           if (getComputedStyle(currentNode).position !== 'static') {
             offsetParentIsBody = false;
@@ -1186,8 +1186,8 @@ var TetherClass = (function () {
         }
 
         if (!offsetParentIsBody) {
-          this.element.parentNode.removeChild(this.element);
-          document.body.appendChild(this.element);
+          this.showCat.parentNode.removeChild(this.showCat);
+          document.body.appendChild(this.showCat);
         }
       }
 
@@ -1196,7 +1196,7 @@ var TetherClass = (function () {
       var write = false;
       for (var key in css) {
         var val = css[key];
-        var elVal = this.element.style[key];
+        var elVal = this.showCat.style[key];
 
         if (elVal !== '' && val !== '' && ['top', 'left', 'bottom', 'right'].indexOf(key) >= 0) {
           elVal = parseFloat(elVal);
@@ -1211,7 +1211,7 @@ var TetherClass = (function () {
 
       if (write) {
         defer(function () {
-          extend(_this6.element.style, writeCSS);
+          extend(_this6.showCat.style, writeCSS);
         });
       }
     }
@@ -1284,8 +1284,8 @@ TetherBase.modules.push({
       return true;
     }
 
-    var _cache = this.cache('element-bounds', function () {
-      return getBounds(_this.element);
+    var _cache = this.cache('showCat-bounds', function () {
+      return getBounds(_this.showCat);
     });
 
     var height = _cache.height;
@@ -1464,7 +1464,7 @@ TetherBase.modules.push({
         }
       }
 
-      if (changeAttachY === 'element' || changeAttachY === 'both') {
+      if (changeAttachY === 'showCat' || changeAttachY === 'both') {
         if (top < bounds[1] && eAttachment.top === 'bottom') {
           top += height;
           eAttachment.top = 'top';
@@ -1476,7 +1476,7 @@ TetherBase.modules.push({
         }
       }
 
-      if (changeAttachX === 'element' || changeAttachX === 'both') {
+      if (changeAttachX === 'showCat' || changeAttachX === 'both') {
         if (left < bounds[0]) {
           if (eAttachment.left === 'right') {
             left += width;
@@ -1595,7 +1595,7 @@ TetherBase.modules.push({
       if (!(_this.options.addTargetClasses === false)) {
         updateClasses(_this.target, addClasses, allClasses);
       }
-      updateClasses(_this.element, addClasses, allClasses);
+      updateClasses(_this.showCat, addClasses, allClasses);
     });
 
     return { top: top, left: left };
@@ -1617,8 +1617,8 @@ TetherBase.modules.push({
     var top = _ref.top;
     var left = _ref.left;
 
-    var _cache = this.cache('element-bounds', function () {
-      return getBounds(_this.element);
+    var _cache = this.cache('showCat-bounds', function () {
+      return getBounds(_this.showCat);
     });
 
     var height = _cache.height;
@@ -1669,7 +1669,7 @@ TetherBase.modules.push({
       if (!(_this.options.addTargetClasses === false)) {
         updateClasses(_this.target, addClasses, allClasses);
       }
-      updateClasses(_this.element, addClasses, allClasses);
+      updateClasses(_this.showCat, addClasses, allClasses);
     });
 
     return true;

@@ -1,13 +1,15 @@
 create table users (
    user_id  serial    PRIMARY KEY
-  ,email    char(80)  NOT NULL
-  ,password char(80)  NOT NULL
+  ,email    text
+  ,password text
+  ,token text
 );
 
 create table sellers (
    seller_id  SERIAL    PRIMARY KEY
-  ,email      char(80)  NOT NULL
-  ,password   char(80)  NOT NULL
+  ,email      text
+  ,password   text
+  ,token text
 );
 
 create TABLE items (
@@ -52,4 +54,14 @@ CREATE TABLE ordered_items (
 create table categories (
   id serial PRIMARY KEY
   ,category TEXT NOT NULL
+);
+
+create table profile (
+  id serial PRIMARY KEY
+  ,user_id INT REFERENCES users(user_id)
+  ,full_name text
+  ,f_name text
+  ,l_name text
+  ,pic_url text
+  ,email text
 );

@@ -10,7 +10,7 @@ $secret = 'spBou3DDhERGKUB84Cik3u6r';
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    googles OAuth integration-->
+    <!--    google OAuth integration-->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="170814241120-btcf4dcrl69cjira3ebf8us7g0pnlmmv.apps.googleusercontent.com">
 
@@ -42,6 +42,7 @@ $secret = 'spBou3DDhERGKUB84Cik3u6r';
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
 </script>
 
 <nav class="navbar fixed-top navbar-toggleable-md navbar-dark pink lighten-4">
@@ -72,50 +73,15 @@ $secret = 'spBou3DDhERGKUB84Cik3u6r';
 </header>
 <div class="container free-bird">
     <!--Form without header-->
-    <div class="card col-8 offset-2">
-        <div class="card-block p-5">
+    <div class="card">
+        <h1>Profile</h1>
+        <?php
 
-            <!--Header-->
-            <div class="text-center">
-                <h3><i class="fa fa-lock"></i> Login:</h3>
-                <hr class="mt-2 mb-2">
-            </div>
-
-            <!--Body-->
-            <div class="md-form">
-                <i class="fa fa-envelope prefix"></i>
-                <input type="text" id="form2" class="form-control">
-                <label for="form2">Your email</label>
-            </div>
-
-            <div class="md-form">
-                <i class="fa fa-lock prefix"></i>
-                <input type="password" id="form3" class="form-control">
-                <label for="form4">Your password</label>
-            </div>
-            <div class="text-center">
-                <button onclick="" class="btn pink lighten-4 m-0">Login</button>
-                <br>
-                <br>
-                <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-                <br>
-                <br>
-                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light" data-width="300" data-height="45" data-longtitle="true">button</div>
-                <!--<a href="#" onclick="signOut();">Sign out</a>-->
-            </div>
-        </div>
-
-        <!--Footer-->
-        <div class="modal-footer">
-            <div class="alert-warning alert">
-            blah blah blah
-            </div>
-            <div class="options">
-                <p>Not a member? <a href="signup.php">Sign Up</a></p>
-                <p>Forgot <a href="#">Password?</a></p>
-            </div>
-        </div>
-
+        echo '
+        Name: '.$_SESSION["fullName"].'<br>
+        Email: '.$_SESSION["email"].'<br>
+        Picture: '.$_SESSION["pic"].'<br>';
+        ?>
     </div>
     <!--/Form without header-->
 </div>

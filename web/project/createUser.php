@@ -1,41 +1,89 @@
 <?php
 session_start();
 
-// default Heroku Postgres configuration URL
-$dbUrl = getenv('DATABASE_URL');
+require 'db_connect.php';
 
-if (empty($dbUrl)) {
-    // example localhost configuration URL with postgres username and a database called cs313db
-    $dbUrl = "postgres://postgres:reddragon@localhost:5432/postgres";
+if(isset($_POST['action']) && !empty($_POST['action'])) {
+    $action = $_POST['action'];
+    switch($action) {
+        case 'google' : google();break;
+        case 'facebook' : break;
+        case 'login' : login();break;
+        case 'create' : accountCreate();break;
+    }
 }
 
-$dbopts = parse_url($dbUrl);
+function google() {
+    global $db;
+    if(isset($_POST["token"])) {
+        $token = $_POST["token"];
+        $statement = $db->prepare("select user_id from users where users.token = '".$token."';");
+        $statement->execute();
+        $count = $statement->rowCount();
 
-$dbHost = $dbopts["host"];
-$dbPort = $dbopts["port"];
-$dbUser = $dbopts["user"];
-$dbPassword = $dbopts["pass"];
-$dbName = ltrim($dbopts["path"],'/');
+        if($count > 0) {
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            $_SESSION["userID"] = $row["user_id"];
+            $_SESSION["fullName"] = $_POST["fullName"];
+            $_SESSION["email"] = $_POST["email"];
+            $_SESSION["pic"] = $_POST["pic"];
 
-try {
-    $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-}
-catch (PDOException $ex) {
-    print "<p>error: $ex->getMessage() </p>\n\n";
-    die();
-}
+            echo $row["user_id"];
+        } else {
+            $stmt = $db->prepare("insert into users (token) values ('".$token."');");
+            $stmt->execute();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                echo 'account created';
 
-$username = $_POST["username"];
+            }
 
-if ($username !== null) {
-    $user_hash = password_hash($username, PASSWORD_DEFAULT);
-    $statement = $db->prepare("select email FROM users WHERE users.email = ?;");
-    if ($statement->execute($user_hash)) {
-        while ($row = $statement->fetch()) {
-            if ($row === null) {
-                echo 'success';
-            }else echo 'username taken';
+
+            else echo ' error in account creation';
         }
-    } else echo 'error1';
-} else echo $username . ' error 2';
+    }
+}
+
+function login()  {
+    global $db;
+    if (isset($_POST["email"]) && !empty($_POST['email'])) {
+        $email = $_POST["email"];
+        $pass = $_POST["password"];
+
+        $statement = $db->prepare("select * FROM users where email = '".$email."';");
+        if ($statement->execute()) {
+            while ($row = $statement->fetch()) {
+                if (password_verify($pass, $row["password"])) {
+                    echo 'account verified';
+                    $_SESSION["userID"] = $row["user_id"];
+                    $_SESSION["fullName"] = $_POST['fullName'];
+                    $_SESSION["email"] = $_POST['email'];
+                    $_SESSION["pic"] = $_POST['pic'];
+                }
+
+                else echo 'incorrect password';
+            }
+        } else {
+            echo 'Statement Error';
+        }
+    } else echo 'Post Error';
+}
+
+function accountCreate() {
+    global $db;
+    if(isset($_POST["email"]) && !empty($_POST['email'])) {
+        $email = $_POST["email"];
+        $pass = $_POST["password"];
+
+        $statement = $db->prepare("select email, password FROM users where email = '".$email."';");
+        if ($statement->execute()) {
+            $count = $statement->rowCount();
+            if ($count > 0) {
+                echo 'Email already registered';
+            } else {
+
+            }
+        } else echo 'Statement Error';
+    }
+}
 
