@@ -46,6 +46,9 @@ function login()  {
     if (isset($_POST['email']) && !empty($_POST['email'])) {
         $email = $_POST['email'];
         $pass = $_POST["password"];
+        $test = password_verify('subspacenet', '$2y$10$rl1WdSGrV63Pw./4KgXEEugceQj2856Fk94KBaLf1jDieCZxZWlUa');
+        $test2 = password_verify($pass, '$2y$10$rl1WdSGrV63Pw./4KgXEEugceQj2856Fk94KBaLf1jDieCZxZWlUa');
+        echo $test . ' test 2='.$test2;
         $statement = $db->prepare("select * FROM users where email = '".$email."';");
         $success = $statement->execute();
         if ($success) {
@@ -56,7 +59,7 @@ function login()  {
                     if (password_verify($pass, $row["password"])) {
                         echo 'account verified';
                         $_SESSION["userID"] = $row["user_id"];
-                    } else echo 'password incorrect. pass=' . $pass . 'hash = ' . $row["password"];
+                    } else echo ' password incorrect. pass=' . $pass . ' hash =' . $row["password"];
                 }
             } else echo "Username incorrect.";
         } else echo 'Statement Error';
