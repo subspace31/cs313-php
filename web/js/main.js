@@ -15,7 +15,10 @@ $().ready(function(){
             addCat.removeClass('animated fadeOut');
         });
         $('#show-cat').show();
-    })
+    });
+    $('#pass2').blur(function() {
+        validatePassword();
+    });
 });
 
 
@@ -64,8 +67,11 @@ function signIn(eID, pID) {
         url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        $('.alert-warning').text(data);
-        console.log(data);
+        if (data > 0) {
+            $('#pass').addClass('invalid').removeClass('valid')
+            $('#email').addClass('invalid').removeClass('valid');
+            $('#pass-label').attr('data-error', 'Username and/or password incorrect');
+        }
     }).fail(function(data) { // fail method
         // fail stuff
     });
@@ -176,3 +182,13 @@ $("#avatar-1").fileinput({
     layoutTemplates: {main2: '{preview} {remove} {browse}'},
     allowedFileExtensions: ["jpg", "png", "gif"]
 });
+
+//validate inputs
+function validatePassword() {
+    pass1 = $('#pass1');
+    pass2= $('#pass2');
+    if (pass1.val() !== pass2.val() ) {
+        pass1.addClass('invalid').removeClass('valid');
+        pass2.addClass('invalid').removeClass('valid');
+    }
+}

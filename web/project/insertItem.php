@@ -4,9 +4,9 @@ require 'db_connect.php';
 global $db;
 
 $id = 1;
-$name = $_POST["name"];
-$desc = $_POST["desc"];
-$cost = $_POST['cost'];
+$name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+$desc = filter_var($_POST['desc'], FILTER_SANITIZE_STRING);
+$cost = filter_var($_POST['cost'], FILTER_SANITIZE_NUMBER_FLOAT);
 $cat = $_POST['cat'];
 
 $stmt = $db->prepare('insert into items (seller_id, name, description, cost, category_id) values (:id, :name, :desc, :cost, (select id from categories where categories.category = :cat));');

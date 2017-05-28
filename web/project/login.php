@@ -84,14 +84,14 @@ $secret = 'spBou3DDhERGKUB84Cik3u6r';
             <!--Body-->
             <div class="md-form">
                 <i class="fa fa-envelope prefix"></i>
-                <input type="text" id="form2" class="form-control">
-                <label for="form2">Your email</label>
+                <input type="email" id="email" class="form-control validate">
+                <label for="email">Your email</label>
             </div>
-
+            <br>
             <div class="md-form">
                 <i class="fa fa-lock prefix"></i>
-                <input type="password" id="form3" class="form-control">
-                <label for="form4">Your password</label>
+                <input type="password" id="pass" class="form-control validate">
+                <label for="pass" id="pass-label">Your password</label>
             </div>
             <div class="text-center">
                 <button onclick="signIn('form2', 'form3')" class="btn pink lighten-4 m-0">Login</button>

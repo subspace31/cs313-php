@@ -6,13 +6,13 @@ require 'db_connect.php';
 if(isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
     switch($action) {
-        case 'google' : google();break;
+//        case 'google' : google();break;
         case 'facebook' : break;
         case 'login' : login();break;
         case 'create' : accountCreate();break;
     }
 } else echo 'error selecting action';
-
+/*
 function google() {
     global $db;
     if(isset($_POST["token"])) {
@@ -39,13 +39,14 @@ function google() {
             else echo ' error in account creation';
         }
     }
-}
+}*/
 
 function login()  {
     global $db;
     if (isset($_POST['email']) && !empty($_POST['email'])) {
-        $email = $_POST['email'];
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $pass = $_POST["password"];
+
         $statement = $db->prepare("select * FROM users where email = '".$email."';");
         $success = $statement->execute();
         if ($success) {
@@ -53,21 +54,20 @@ function login()  {
             if ($count > 0)
             {
                 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                    $verify = password_verify($pass, $row["password"]);
-                    if ($verify) {
-                        echo 'account verified';
+                    if (password_verify($pass, $row["password"])) {
+                        echo 0;
                         $_SESSION["userID"] = $row["user_id"];
-                    } else echo ' password incorrect. pass=' . $pass . ' hash =' . $row["password"];
+                    } else echo 1;
                 }
-            } else echo "Username incorrect.";
-        } else echo 'Statement Error';
-    } else echo 'Post Error';
+            } else echo 1;
+        } else echo 2;
+    } else echo 3;
 }
 
 function accountCreate() {
     global $db;
     if(isset($_POST["email"]) && !empty($_POST['email'])) {
-        $email = $_POST["email"];
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
         $statement = $db->prepare("select email, password FROM users where email = '".$email."';");
