@@ -55,7 +55,7 @@ session_start();
         <div>
             <!-- the avatar markup -->
             <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
-            <form class="text-center" action="" method="post" enctype="multipart/form-data">
+            <form class="text-center" action="insertItem.php" id="insertItemForm" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="kv-avatar center-block col-3" style="width:200px">
                         <input id="avatar-1" name="avatar-1" type="file" class="file-loading">
@@ -63,20 +63,20 @@ session_start();
                     <!-- include other inputs if needed and include a form submit (save) button -->
                     <div class="text-left col-9">
                         <div class="md-form">
-                            <input type="text" id="form1" class="form-control">
-                            <label for="form1">Name</label>
+                            <input type="text" id="name" class="form-control">
+                            <label for="name">Name</label>
                         </div>
                         <div class="md-form">
-                            <input type="number" id="form3" class="form-control">
-                            <label for="form3">Cost</label>
+                            <input type="number" id="cost" class="form-control">
+                            <label for="cost">Cost</label>
                         </div>
                         <div class="md-form">
-                            <textarea type="text" id="form4" class="md-textarea"></textarea>
-                            <label for="form4">Description</label>
+                            <textarea type="text" id="desc" class="md-textarea"></textarea>
+                            <label for="desc">Description</label>
                         </div>
-                        <label for="form5">Category</label>
+                        <label for="cat">Category</label>
                         <div class="container d-inline-flex">
-                            <select id="form5" class="pull-left">
+                            <select id="cat" class="pull-left">
                                 <?php
                                 require 'db_connect.php';
                                 global $db;
@@ -93,14 +93,14 @@ session_start();
                         <div class="add-category hidden collapse">
                             <hr>
                             <div class="md-form d-inline-flex">
-                                <input type="text" id="form6" class="form-control">
-                                <label for="form6">New Category</label>
+                                <input type="text" id="newcat" class="form-control">
+                                <label for="newcat">New Category</label>
                             </div>
                             <button type="button" class="btn pink lighten-4" onclick="addCategory();">Add</button>
-                            <i class="fa fa-close pull-right close" href="#addCategory"></i>
+                            <i class="fa fa-close pull-right close"></i>
                             <hr>
                         </div>
-                        <button type="submit" class="btn pink lighten-4">Save Listing</button>
+                        <button type="button" onclick="addItem('name', 'cost', 'desc', 'cat')" class="btn pink lighten-4">Save Listing</button>
                     </div>
                 </div>
             </form>

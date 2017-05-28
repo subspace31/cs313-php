@@ -59,13 +59,12 @@ function signIn(eID, pID) {
     email = $('#' + eID).val();
     password = $('#' + pID).val();
 
-    var formData = {email:email, password:password}; //Array
-    console.log(formData);
+    var formData = {action:"login", email:email, password:password}; //Array
     $.post({
-        url : "loginUser.php",
+        url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        $('#alert-warning').val(data);
+        $('.alert-warning').text(data);
         console.log(data);
     }).fail(function(data) { // fail method
         // fail stuff
@@ -73,10 +72,10 @@ function signIn(eID, pID) {
 }
 
 function signup(userInput, passInput) {
-    username = $('#' + userInput).val();
+    email = $('#' + userInput).val();
     password = $('#' + passInput).val();
 
-    var formData = {username:username, password:password}; //Array
+    var formData = {email:email, password:password, action:'create'}; //Array
     console.log(formData);
     $.post({
         url : "createUser.php",
@@ -122,24 +121,44 @@ function onSignIn(googleUser) {
 
 function showAddCategory() {
     showCat = $('#show-cat');
-    addCat = $('.add-category')
-    showCat.addClass('animated fadeOut');
+    addCat = $('.add-category');
+    showCat.addClass('animated fadeOutRight');
     showCat.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
         showCat.hide();
         showCat.removeClass('animated fadeOut');
     });
     showCat.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
         showCat.hide();
-        showCat.removeClass('animated fadeOut');
+        showCat.removeClass('animated fadeOutRight');
     });
 
-    addCat.addClass('animated fadeIn');
+    addCat.addClass('animated fadeInDown');
     addCat.show();
     addCat.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-        addCat.removeClass('animated fadeOut');
+        addCat.removeClass('animated fadeInDown');
     });
-
 }
+
+function addItem(nID, cosID, dID, catID) {
+    name = $('#' + nID).val();
+    cost = $('#' + cosID).val();
+    desc = $('#' + dID).val();
+    cat = $('#' + catID).val();
+
+    formData = {name:name, cost:cost, desc:desc, cat:cat};
+
+    $.post({
+        url : 'insertItem.php',
+        data : formData,
+    }).done(function(data) { // success method
+        $('#alert-warning').text(data);
+        console.log(data);
+    }).fail(function(data) { // fail method
+        $('#alert-warning').text('ajax fail data= ' + data);
+        console.log(data);
+    });
+}
+
 
 $("#avatar-1").fileinput({
     overwriteInitial: true,

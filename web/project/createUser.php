@@ -11,7 +11,7 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
         case 'login' : login();break;
         case 'create' : accountCreate();break;
     }
-}
+} else echo 'error selecting action';
 
 function google() {
     global $db;
@@ -35,10 +35,7 @@ function google() {
             $count = $stmt->rowCount();
             if ($count > 0) {
                 echo 'account created';
-
             }
-
-
             else echo ' error in account creation';
         }
     }
@@ -46,26 +43,23 @@ function google() {
 
 function login()  {
     global $db;
-    if (isset($_POST["email"]) && !empty($_POST['email'])) {
-        $email = $_POST["email"];
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        $email = $_POST['email'];
         $pass = $_POST["password"];
-
         $statement = $db->prepare("select * FROM users where email = '".$email."';");
-        if ($statement->execute()) {
-            while ($row = $statement->fetch()) {
-                if (password_verify($pass, $row["password"])) {
-                    echo 'account verified';
-                    $_SESSION["userID"] = $row["user_id"];
-                    $_SESSION["fullName"] = $_POST['fullName'];
-                    $_SESSION["email"] = $_POST['email'];
-                    $_SESSION["pic"] = $_POST['pic'];
+        $success = $statement->execute();
+        if ($success) {
+            $count = $statement->rowCount();
+            if ($count > 0)
+            {
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                    if (password_verify($pass, $row["password"])) {
+                        echo 'account verified';
+                        $_SESSION["userID"] = $row["user_id"];
+                    } else echo 'Username and/or password incorrect.';
                 }
-
-                else echo 'incorrect password';
-            }
-        } else {
-            echo 'Statement Error';
-        }
+            } else echo "Username and/or password incorrect.";
+        } else echo 'Statement Error';
     } else echo 'Post Error';
 }
 
@@ -73,7 +67,7 @@ function accountCreate() {
     global $db;
     if(isset($_POST["email"]) && !empty($_POST['email'])) {
         $email = $_POST["email"];
-        $pass = $_POST["password"];
+        $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
         $statement = $db->prepare("select email, password FROM users where email = '".$email."';");
         if ($statement->execute()) {
@@ -81,7 +75,13 @@ function accountCreate() {
             if ($count > 0) {
                 echo 'Email already registered';
             } else {
-
+                $stmt = $db->prepare("insert into users (email, password) values (:email, :password);");
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':password', $pass);
+                if ($stmt->execute()) {
+                    echo 'account created';
+                    $_SESSION['userID'] = $db->lastInsertId();
+                } else echo 'statement 2 error';
             }
         } else echo 'Statement Error';
     }

@@ -94,25 +94,22 @@ $secret = 'spBou3DDhERGKUB84Cik3u6r';
                 <label for="form4">Your password</label>
             </div>
             <div class="text-center">
-                <button onclick="" class="btn pink lighten-4 m-0">Login</button>
-                <br>
+                <button onclick="signIn('form2', 'form3')" class="btn pink lighten-4 m-0">Login</button>
+                <!--<br>
                 <br>
                 <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
                 <br>
                 <br>
                 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light" data-width="300" data-height="45" data-longtitle="true">button</div>
-                <!--<a href="#" onclick="signOut();">Sign out</a>-->
+                <a href="#" onclick="signOut();">Sign out</a>-->
             </div>
         </div>
 
         <!--Footer-->
         <div class="modal-footer">
-            <div class="alert-warning alert">
-            blah blah blah
-            </div>
             <div class="options">
                 <p>Not a member? <a href="signup.php">Sign Up</a></p>
-                <p>Forgot <a href="#">Password?</a></p>
+                <!--<p>Forgot <a href="#">Password?</a></p>-->
             </div>
         </div>
 
