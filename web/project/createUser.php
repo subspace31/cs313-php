@@ -56,7 +56,7 @@ function login()  {
                     if (password_verify($pass, $row["password"])) {
                         echo 'account verified';
                         $_SESSION["userID"] = $row["user_id"];
-                    } else echo 'password incorrect.';
+                    } else echo 'password incorrect. pass=' . $pass . 'hash = ' . $row["password"];
                 }
             } else echo "Username incorrect.";
         } else echo 'Statement Error';
