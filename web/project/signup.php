@@ -71,7 +71,7 @@ session_start();
             </div>
 
             <div class="text-center">
-                <button class="btn pink lighten-3" onclick="signup('form1','form2')">Sign Up</button>
+                <button class="btn pink lighten-3" onclick="signup('email','pass1')">Sign Up</button>
             </div>
 
         </div>

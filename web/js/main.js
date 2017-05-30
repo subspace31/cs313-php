@@ -68,7 +68,26 @@ function signIn(eID, pID) {
         data : formData,
     }).done(function(data) { // success method
         if (data > 0) {
-            $('#pass').addClass('invalid').removeClass('valid')
+            $('#pass').addClass('invalid').removeClass('valid');
+            $('#email').addClass('invalid').removeClass('valid');
+            $('#pass-label').attr('data-error', 'Username and/or password incorrect');
+        }
+    }).fail(function(data) { // fail method
+        // fail stuff
+    });
+}
+
+function signInCreator(eID, pID) {
+    email = $('#' + eID).val();
+    password = $('#' + pID).val();
+
+    var formData = {action:"loginC", email:email, password:password}; //Array
+    $.post({
+        url : "createUser.php",
+        data : formData,
+    }).done(function(data) { // success method
+        if (data > 0) {
+            $('#pass').addClass('invalid').removeClass('valid');
             $('#email').addClass('invalid').removeClass('valid');
             $('#pass-label').attr('data-error', 'Username and/or password incorrect');
         }
@@ -93,6 +112,24 @@ function signup(userInput, passInput) {
         // fail stuff
     });
 }
+
+function signupC(userInput, passInput) {
+    email = $('#' + userInput).val();
+    password = $('#' + passInput).val();
+
+    var formData = {email:email, password:password, action:'createC'}; //Array
+    console.log(formData);
+    $.post({
+        url : "createUser.php",
+        data : formData,
+    }).done(function(data) { // success method
+        window.location.href = './' + data;
+        console.log(data);
+    }).fail(function(data) { // fail method
+        // fail stuff
+    });
+}
+
 
 
 function onSignIn(googleUser) {

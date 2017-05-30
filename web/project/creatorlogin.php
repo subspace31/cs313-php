@@ -1,14 +1,16 @@
 <?php
 session_start();
+
+$secret = 'spBou3DDhERGKUB84Cik3u6r';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Creator Login</title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    googles OAuth integration-->
+    <!--    googles OAuth integration-->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="170814241120-btcf4dcrl69cjira3ebf8us7g0pnlmmv.apps.googleusercontent.com">
 
@@ -75,7 +77,7 @@ session_start();
 
             <!--Header-->
             <div class="text-center">
-                <h3><i class="fa fa-lock"></i> Login:</h3>
+                <h3><i class="fa fa-lock"></i> Creator Login:</h3>
                 <hr class="mt-2 mb-2">
             </div>
 
@@ -92,7 +94,7 @@ session_start();
                 <label for="pass" id="pass-label">Your password</label>
             </div>
             <div class="text-center">
-                <button onclick="signIn('email', 'pass')" class="btn pink lighten-4 m-0">Login</button>
+                <button onclick="signInCreator('email', 'pass')" class="btn pink lighten-4 m-0">Login</button>
                 <!--<br>
                 <br>
                 <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>

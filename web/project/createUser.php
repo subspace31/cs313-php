@@ -10,6 +10,8 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
         case 'facebook' : break;
         case 'login' : login();break;
         case 'create' : accountCreate();break;
+        case 'createC' : accountCreateC();break;
+        case 'loginC' : loginC();break;
     }
 } else echo 'error selecting action';
 /*
@@ -64,6 +66,29 @@ function login()  {
     } else echo 3;
 }
 
+function loginC()  {
+    global $db;
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $pass = $_POST["password"];
+
+        $statement = $db->prepare("select * FROM sellers where email = '".$email."';");
+        $success = $statement->execute();
+        if ($success) {
+            $count = $statement->rowCount();
+            if ($count > 0)
+            {
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                    if (password_verify($pass, $row["password"])) {
+                        echo 0;
+                        $_SESSION["sellerID"] = $row["seller_id"];
+                    } else echo 1;
+                }
+            } else echo 1;
+        } else echo 2;
+    } else echo 3;
+}
+
 function accountCreate() {
     global $db;
     if(isset($_POST["email"]) && !empty($_POST['email'])) {
@@ -88,3 +113,26 @@ function accountCreate() {
     }
 }
 
+function accountCreateC() {
+    global $db;
+    if(isset($_POST["email"]) && !empty($_POST['email'])) {
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+        $statement = $db->prepare("select email, password FROM sellers where email = '".$email."';");
+        if ($statement->execute()) {
+            $count = $statement->rowCount();
+            if ($count > 0) {
+                echo 'Email already registered';
+            } else {
+                $stmt = $db->prepare("insert into sellers (email, password) values (:email, :password);");
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':password', $pass);
+                if ($stmt->execute()) {
+                    $_SESSION['sellerID'] = $db->lastInsertId();
+                    echo 'addListing.php';
+                } else echo 'statement 2 error';
+            }
+        } else echo 'Statement Error';
+    }
+}

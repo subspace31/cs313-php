@@ -51,44 +51,44 @@ session_start();
 
             <!--Header-->
             <div class="text-center">
-                <h3><i class="fa fa-lock"></i> Sign Up:</h3>
+                <h3>Sign Up:</h3>
                 <hr class="mt-2 mb-2">
             </div>
 
             <!--Body-->
             <div class="md-form">
-                <i class="fa fa-envelope prefix"></i>
-                <input type="text" id="form2" class="form-control">
-                <label for="form2">Your email</label>
+                <input type="email" id="email" class="form-control validate">
+                <label for="email" data-error="Invalid email">Your email</label>
             </div>
 
             <div class="md-form">
-                <input type="password" id="form4" class="form-control">
-                <label for="form4">Your password</label>
+                <input type="password" id="pass1" class="form-control validate">
+                <label for="pass1">Your password</label>
             </div>
             <div class="md-form">
-                <input type="password" id="form4" class="form-control">
-                <label for="form4">Confirm password</label>
+                <input type="password" id="pass2" class="form-control validate">
+                <label for="pass2" data-error="Passwords do not match">Confirm password</label>
             </div>
 
             <div class="text-center">
-                <button class="btn pink lighten-3">Sign Up</button>
+                <button class="btn pink lighten-3" onclick="signupC('email','pass1')">Sign Up</button>
             </div>
 
         </div>
-
     </div>
     <!--/Form without header-->
 </div>
+
 </body>
 
 
 <?php include 'footer.php' ?>
 
 <script src="../js/jquery-3.1.1.js" type="text/javascript"></script>
+<script src="../js/tether.js"></script>
 <script src="../js/bootstrap.js" type="text/javascript"></script>
 <script src="../js/mdb.js" type="text/javascript"></script>
-<script src="../js/tether.js"></script>
+
 
 <script src="../js/main.js"></script>
 
