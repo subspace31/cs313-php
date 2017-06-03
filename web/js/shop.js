@@ -1,7 +1,3 @@
-/**
- * Created by subsp on 5/20/2017.
- */
-
 getData();
 
 function getData(cat = ""){
@@ -15,7 +11,6 @@ function getData(cat = ""){
     }).done(function(data) { // success method
         console.log(data);
         dbdata = JSON.parse(data);
-        console.log(dbdata.toString());
         for(i = 0; i < dbdata.length; i++) {
             if (category === "" || dbdata[i].category !== category) {
                 category = dbdata[i].category;
@@ -25,14 +20,12 @@ function getData(cat = ""){
             outputHTML += dbdata[i].name + '"><div class="media-body"> <ul> <li><h5>';
             outputHTML += dbdata[i].name + '</h5></li><li>' + dbdata[i].description + '</li><li><br></li><li class="d-flex flex-row-reverse"><h5 class="px-2"><strong><span>$';
             outputHTML += dbdata[i].cost + '</span></strong></h5></li><li></li> <li> <div class="d-flex flex-row-reverse btn-group"> <button class="waves-effect btn pink lighten-4" onclick="addCart(\'';
-            outputHTML += dbdata[i].name + '\',\'' + dbdata[i].cost + '\', \'...\', \'' + dbdata[i].itmnum + '\');" type="button">Add to Cart</button></div> </li> </ul> </div> </li> </ul>'
+            outputHTML += dbdata[i].name + '\',\'' + dbdata[i].cost + '\', \'...\', \'' + dbdata[i]['item_id'] + '\');" type="button">Add to Cart</button></div> </li> </ul> </div> </li> </ul>'
         }
 
         $('.shop-list').html(outputHTML);
     }).fail(function(data) { // fail method
         // fail stuff
-    }).always(function(data) { // always runs, success or fail
-        console.log('always');
     });
 }
 

@@ -16,25 +16,37 @@ $().ready(function(){
         });
         $('#show-cat').show();
     });
-    $('#pass2').blur(function() {
+    $('#signup-pass2').blur(function() {
         validatePassword();
+    });
+    $('input[name="address"]').click(function() {
+        form = $('#newAddress');
+        if($('#new').is(':checked')) {
+            form.addClass('animated fadeIn');
+            form.show();
+            form.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                form.removeClass('animated fadeIn');
+            });
+        } else {
+            form.hide();
+            $('#hidden-id').val($('input[name=address]:checked').val());
+        }
     });
 });
 
 
 var cartCount = "0";
 
-function addCart(itemName, itemPrice, itemPic, itemNum) { 
+function addCart(itemName, itemPrice, itemPic, itemNum) {
     var formData = {itemName:itemName,itemPrice:itemPrice,itemPic:itemPic, itemNum:itemNum, itemQty:1}; //Array 
- 
+
     $.post({ // built in post
-    	url : "addToCart.php",
-      	data : formData,
+        url : "addToCart.php",
+        data : formData,
     }).done(function(data) { // success method
-        cartCount = data;
-    	$('#counter').html(cartCount);
+        $('#counter').text(data);
     }).fail(function(data) { // fail method
-    	// fail stuff
+        // fail stuff
     }).always(function(data) { // always runs, success or fail
         console.log('always');
     });
@@ -43,62 +55,91 @@ function addCart(itemName, itemPrice, itemPic, itemNum) {
 var total = "0.00";
 function removeCart(itemNum) {
     var formData = {itemNum:itemNum};
-     $('#' + itemNum).hide();
-    
+    $('#' + itemNum).hide();
+
     $.post({ // built in post
-    	url : "removeFromCart.php",
-      	data : formData,
+        url : "removeFromCart.php",
+        data : formData,
     }).done(function(data) { // success method
-        total = data;
-    	$('#cartTotal').html(total);
+        $('#cartTotal').html(data);
     }).fail(function(data) { // fail method
-    	// fail stuff
-    }).always(function(data) { // always runs, success or fail
-        console.log('always');
+        // fail stuff
+    });
+}
+
+function logout(loc){
+    formData = {action:'logout'};
+    $.post({ // built in post
+        url : "createUser.php",
+        data : formData,
+    }).done(function(data) { // success method
+        window.location.reload();
     });
 }
 
 function signIn(eID, pID) {
-    email = $('#' + eID).val();
-    password = $('#' + pID).val();
+    emailInput = $('#' + eID);
+    passwordInput = $('#' + pID);
+    password = passwordInput.val();
+    email = emailInput.val();
 
     var formData = {action:"login", email:email, password:password}; //Array
     $.post({
         url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        if (data > 0) {
-            $('#pass').addClass('invalid').removeClass('valid');
-            $('#email').addClass('invalid').removeClass('valid');
-            $('#pass-label').attr('data-error', 'Username and/or password incorrect');
+        switch (data) {
+            case '0':
+                window.location.reload();
+                break;
+            case '1':
+                passwordInput.addClass('invalid').removeClass('valid');
+                emailInput.addClass('invalid').removeClass('valid');
+                $('[for="'+pID+'"]').attr('data-error', 'Username and/or password incorrect');
+                break;
+            case '2':
+                break;
         }
     }).fail(function(data) { // fail method
-        // fail stuff
+        console.log('fail');
     });
 }
 
 function signInCreator(eID, pID) {
-    email = $('#' + eID).val();
-    password = $('#' + pID).val();
+    emailInput = $('#' + eID);
+    passwordInput = $('#' + pID);
+    password = passwordInput.val();
+    console.log(password);
+    email = emailInput.val();
 
     var formData = {action:"loginC", email:email, password:password}; //Array
     $.post({
         url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        if (data > 0) {
-            $('#pass').addClass('invalid').removeClass('valid');
-            $('#email').addClass('invalid').removeClass('valid');
-            $('#pass-label').attr('data-error', 'Username and/or password incorrect');
+        console.log(data);
+        switch (data) {
+            case '0':
+                window.location.reload();
+                break;
+            case '1':
+                passwordInput.addClass('invalid').removeClass('valid');
+                emailInput.addClass('invalid').removeClass('valid');
+                $('[for="'+pID+'"]').attr('data-error', 'Username and/or password incorrect');
+                break;
+            case '2':
+                break;
         }
     }).fail(function(data) { // fail method
-        // fail stuff
+        console.log('fail');
     });
 }
 
-function signup(userInput, passInput) {
-    email = $('#' + userInput).val();
-    password = $('#' + passInput).val();
+function signup(eID, pID) {
+    emailInput = $('#' + eID);
+    passwordInput = $('#' + pID);
+    password = passwordInput.val();
+    email = emailInput.val();
 
     var formData = {email:email, password:password, action:'create'}; //Array
     console.log(formData);
@@ -106,16 +147,27 @@ function signup(userInput, passInput) {
         url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        $('#' + userInput).val(data);
-        console.log(data);
+        switch (data) {
+            case '0':
+                window.location.href = 'addListing.php';
+                break;
+            case '1':
+                emailInput.addClass('invalid').removeClass('valid');
+                $('[for="'+eID+'"]').attr('data-error', 'Email already registered');
+                break;
+            case '2':
+                break;
+        }
     }).fail(function(data) { // fail method
         // fail stuff
     });
 }
 
-function signupC(userInput, passInput) {
-    email = $('#' + userInput).val();
-    password = $('#' + passInput).val();
+function signupC(eID, pID) {
+    emailInput = $('#' + eID);
+    passwordInput = $('#' + pID);
+    password = passwordInput.val();
+    email = emailInput.val();
 
     var formData = {email:email, password:password, action:'createC'}; //Array
     console.log(formData);
@@ -123,8 +175,17 @@ function signupC(userInput, passInput) {
         url : "createUser.php",
         data : formData,
     }).done(function(data) { // success method
-        window.location.href = './' + data;
-        console.log(data);
+        switch (data) {
+            case '0':
+                window.location.href = 'addListing.php';
+                break;
+            case '1':
+                emailInput.addClass('invalid').removeClass('valid');
+                $('[for="'+eID+'"]').attr('data-error', 'Email already registered');
+                break;
+            case '2':
+                break;
+        }
     }).fail(function(data) { // fail method
         // fail stuff
     });
@@ -183,23 +244,54 @@ function showAddCategory() {
 }
 
 function addItem(nID, cosID, dID, catID) {
-    name = $('#' + nID).val();
-    cost = $('#' + cosID).val();
-    desc = $('#' + dID).val();
-    cat = $('#' + catID).val();
+    nameI = $('#' + nID);
+    name = nameI.val();
+    costI = $('#' + cosID);
+    cost = costI.val();
+    descI = $('#' + dID);
+    desc = descI.val();
+    catI = $('#' + catID);
+    cat = catI.val();
 
-    formData = {name:name, cost:cost, desc:desc, cat:cat};
+    go = true;
 
-    $.post({
-        url : 'insertItem.php',
-        data : formData,
-    }).done(function(data) { // success method
-        $('#alert-warning').text(data);
-        console.log(data);
-    }).fail(function(data) { // fail method
-        $('#alert-warning').text('ajax fail data= ' + data);
-        console.log(data);
-    });
+    if (name === "") {
+        go = false;
+        nameI.addClass('invalid').removeClass('valid');
+    }
+    if (cost === "") {
+        go = false;
+        costI.addClass('invalid').removeClass('valid');
+    }
+    if (desc === "") {
+        go = false;
+        descI.addClass('invalid').removeClass('valid');
+    }
+    if (cat === "") {
+        go = false;
+    }
+
+    if (go) {
+        formData = {name: name, cost: cost, desc: desc, cat: cat};
+
+        $.post({
+            url: 'insertItem.php',
+            data: formData,
+        }).done(function (data) { // success method
+            $('#modal-text').text(data);
+            if (data === 'Item Added') {
+                nameI.val("");
+                costI.val("");
+                descI.val("");
+            }
+            $('#frameModalBottom').modal('toggle');
+        }).fail(function (data) { // fail method
+            $('#modal-text').text('ajax fail data= ' + data);
+            $('#frameModalBottom').modal('show');
+        });
+    } else {
+        console.log(name + ' ' + cost + ' ' + desc);
+    }
 }
 
 
@@ -222,10 +314,29 @@ $("#avatar-1").fileinput({
 
 //validate inputs
 function validatePassword() {
-    pass1 = $('#pass1');
-    pass2= $('#pass2');
+    pass1 = $('#signup-pass');
+    pass2 = $('#signup-pass2');
     if (pass1.val() !== pass2.val() ) {
         pass1.addClass('invalid').removeClass('valid');
         pass2.addClass('invalid').removeClass('valid');
     }
+}
+
+$("#insertItemForm").submit(function (e) {
+    e.preventDefault();
+
+    addItem('name', 'cost', 'desc', 'cat');
+});
+
+function checkout() {
+    if ($('#new').checked) {
+        formData =$('#newAddress').serialize();
+        $.post({
+            url: 'addAddress.php',
+            data: formData,
+        }).done(function (data) {
+            $('#hidden-id').val(data);
+        });
+    }
+    $('#hidden-form').submit();
 }

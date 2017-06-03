@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 $count = 0; //Number of items in the Cart, will be updated later.
@@ -8,12 +8,11 @@ $cartItem = array("Name" => $_POST["itemName"], "Cost" => $_POST["itemPrice"], "
 $num = $_POST["itemNum"];
 
 //Check if the item is already in the cart, if so increment the Qty by one.
-if (array_key_exists("item$num", $_SESSION)) {
+if (array_key_exists("item$num", $_SESSION['cart'])) {
     $_SESSION["item$num"]["Qty"] += 1;
-    $count = count($_SESSION);
+    $count = count($_SESSION['cart']);
 } else {
-    $_SESSION["item$num"] = $cartItem;
-    $count = count($_SESSION);
+    $_SESSION['cart']["item$num"] = $cartItem;
+    $count = count($_SESSION['cart']);
 }
-
 echo $count;

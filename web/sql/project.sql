@@ -24,8 +24,12 @@ create TABLE items (
 CREATE TABLE address (
   address_id  SERIAL   PRIMARY KEY
   ,user_id    INT      REFERENCES users(user_id)
+  ,address_name text
   ,name       text     NOT NULL
-  ,address    text    NOT NULL
+  ,street    text    NOT NULL
+  ,city   text
+  ,state  text
+  ,zip    text
 );
 
 CREATE TABLE cards (
@@ -65,3 +69,9 @@ create table profile (
   ,pic_url text
   ,email text
 );
+
+
+
+
+
+insert into address (user_id, address_name, name, address) values (13, 'Home', 'Timothy Harris', '7103 Towner Trace', 'Tallahassee', 'Florida', '32312');
