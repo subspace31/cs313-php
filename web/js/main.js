@@ -120,7 +120,7 @@ function signInCreator(eID, pID) {
         console.log(data);
         switch (data) {
             case '0':
-                window.location.reload();
+                window.location.replace('./editListing.php');
                 break;
             case '1':
                 passwordInput.addClass('invalid').removeClass('valid');
