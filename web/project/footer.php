@@ -36,7 +36,7 @@
                     <li><a class="brown-text" href="./creatorlogin.php">Creator Login</a></li>
                     <li><a class="brown-text" href="./signupcreator.php">Creator Sign Up</a></li>
                     <li><a class="brown-text" href="./addListing.php">Add Listing</a></li>
-                    <li><a class="brown-text" href="#">...</a></li>
+                    <li><a class="brown-text" href="./editListings.php">Edit Listings</a></li>
                 </ul>
             </div>
             <!--/.Third column-->

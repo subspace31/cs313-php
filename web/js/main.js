@@ -340,3 +340,29 @@ function checkout() {
     }
     $('#hidden-form').submit();
 }
+
+function confirmDelete(id) {
+    $("#confirm-modal").modal("show");
+    $('#confirm-delete').attr('onclick', 'deleleteItem('+id+')');
+}
+
+function deleteItem(id) {
+    formData = {id:id, action:"delete"};
+    $.post({
+        url: 'insertItem.php',
+        data: formData
+    }).done(function(data) {
+        $('#info-modal-text').text('Listing Deleted');
+        $("#info-modal").modal("show");
+    });
+
+}
+
+function editItem(id) {
+    $('#update-id').val(id);
+    $('#update-name').val($('#old-name').text());
+    $('#update-desc').val($('#old-desc').text());
+    $('#update-cost').val($('#old-cost').text());
+    $('#update-cat').val($('#old-cat').data("cat"));
+    $('#update-listing').modal('show');
+}
