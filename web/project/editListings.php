@@ -23,14 +23,14 @@ include 'head.php';
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu2">
-                        <button class="waves-effect waves-light dropdown-item" onclick="getData()">Search All</button>
+                        <button class="waves-effect waves-light dropdown-item" onclick="getCatData()">Search All</button>
                         <div class="dropdown-divider"></div>
                         <?php
                         global $db;
                         $statement =$statement = $db->prepare("select category FROM categories;");
                         $statement->execute();
                         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<button class="waves-effect waves-light dropdown-item" onclick="getData(\'' . $row["category"] . '\')">' . $row["category"] . '</button>';
+                            echo '<button class="waves-effect waves-light dropdown-item" onclick="getCatData(\'' . $row["category"] . '\')">' . $row["category"] . '</button>';
                         }
                         ?>
                     </div>
@@ -42,18 +42,6 @@ include 'head.php';
             </div>
         </div>
         <div class="shop-list">
-            <?php
-                $stmt = $db->prepare('select item_id, name, items.description, cost, category, category_id from items inner join categories on categories.id = items.category_id where seller_id = :id;');
-                $stmt->bindParam(':id', $id);
-                $id = $_SESSION['sellerID'];
-                $stmt->execute();
-                while ($row = $stmt->fetch()) {
-                    echo '<ul class="list-unstyled card p-3"><li class="media"><img class="mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt=""><div class="media-body row"><ul class="col-8"><li><b>Name:</b> <span id="old-name">'
-                    . $row['name'] . '</span></li><li><b>Description:</b> <span id="old-desc">' . $row['description'] . '</span></li><li><b>Cost:</b> $<span id="old-cost">'
-                    . $row['cost'] . '</span></li><li><b>Category:</b> <span id="old-cat" data-cat="'.$row['category_id'].'">' . $row['category'] . '</span></li> </ul><div class="col-4 btn-group mb-auto"><a class="btn pink lighten-4" onclick="editItem(\''.$row['item_id'].'\')"><i class="fa fa-pencil left"></i> Edit</a>
-                    <a class="btn pink lighten-4" onclick="deleteItem(\''.$row['item_id'].'\')"><i class="fa fa-close left"></i> Delete</a></div></div></li></ul>';
-                }
-            ?>
         </div>
     </div>
 </div>
@@ -135,5 +123,6 @@ include 'head.php';
 </body>
 
 <?php include 'footer.php' ?>
+<script>getCatData();</script>
 </html>
 

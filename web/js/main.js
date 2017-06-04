@@ -366,3 +366,33 @@ function editItem(id) {
     $('#update-cat').val($('#old-cat').data("cat"));
     $('#update-listing').modal('show');
 }
+
+function getCatData(cat = ""){
+    category = cat;
+    outputHTML = "";
+    formData = {category:category};
+    $.post({
+        url : "accessDatabase.php",
+        data : formData,
+        dataType : "html"
+    }).done(function(data) { // success method
+        console.log(data);
+        dbdata = JSON.parse(data);
+        for(i = 0; i < dbdata.length; i++) {
+            if (category === "" || dbdata[i].category !== category) {
+                category = dbdata[i].category;
+                outputHTML += "<h3>"+ category +"</h3>";
+            }
+            outputHTML += '<ul class="list-unstyled card p-3"><li class="media"><img class="mr-3 hoverable" src="https://placehold.it/400x400?text=IMAGE" alt=""><div class="media-body row"><ul class="col-8"><li><b>Name:</b> <span id="old-name">'
+                + dbdata[i]['name'] + '</span></li><li><b>Description:</b> <span id="old-desc">'
+                +  dbdata[i]['description'] + '</span></li><li><b>Cost:</b> $<span id="old-cost">'
+                + dbdata[i]['cost'] + '</span></li><li><b>Category:</b> <span id="old-cat" data-cat="'
+                + dbdata[i]['category_id']+'">'+ dbdata[i]['category'] + '</span></li> </ul><div class="col-4 btn-group mb-auto"><a class="btn pink lighten-4" onclick="editItem(\''
+                +dbdata[i]['item_id']+'\')"><i class="fa fa-pencil left"></i> Edit</a><a class="btn pink lighten-4" onclick="deleteItem(\''
+                + dbdata[i]['item_id']+'\')"><i class="fa fa-close left"></i> Delete</a></div></div></li></ul>';
+        }
+        $('.shop-list').html(outputHTML);
+    }).fail(function(data) { // fail method
+        // fail stuff
+    });
+}
