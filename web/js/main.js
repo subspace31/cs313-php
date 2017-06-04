@@ -272,7 +272,7 @@ function addItem(nID, cosID, dID, catID) {
     }
 
     if (go) {
-        formData = {name: name, cost: cost, desc: desc, cat: cat};
+        formData = {action:'add' ,name:name, cost:cost, desc:desc, cat:cat};
 
         $.post({
             url: 'insertItem.php',
