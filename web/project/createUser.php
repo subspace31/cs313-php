@@ -96,17 +96,17 @@ function accountCreate() {
         if ($statement->execute()) {
             $count = $statement->rowCount();
             if ($count > 0) {
-                echo 'Email already registered';
+                echo '1';
             } else {
                 $stmt = $db->prepare("insert into users (email, password) values (:email, :password);");
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $pass);
                 if ($stmt->execute()) {
-                    echo 'account created';
+                    echo '0';
                     $_SESSION['userID'] = $db->lastInsertId();
-                } else echo 'statement 2 error';
+                } else echo '2';
             }
-        } else echo 'Statement Error';
+        } else echo '2';
     }
 }
 

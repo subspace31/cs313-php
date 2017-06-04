@@ -38,7 +38,7 @@
                         <!--Footer-->
                         <div class="modal-footer display-footer">
                             <div class="options text-center text-md-right mt-1">
-                                <p>Not a member? <a href="./signup.php" class="pink-text">Sign Up</a></p>
+                                <p>Not a member? <a data-toggle='tab' href="#panelsignup" class="pink-text">Sign Up</a></p>
                             </div>
                             <button type="button" class="btn btn-outline-white pink lighten-4 waves-effect ml-auto" data-dismiss="modal">Close <i class="fa fa-times-circle ml-1"></i></button>
                         </div>
@@ -76,7 +76,7 @@
                         <!--Footer-->
                         <div class="modal-footer">
                             <div class="options text-right">
-                                <p class="pt-1">Already have an account? <a href="./login.php" class="pink-text">Log In</a></p>
+                                <p class="pt-1">Already have an account? <a data-toggle="tab" href="#panellogin" class="pink-text">Log In</a></p>
                             </div>
                             <button type="button" class="btn btn-outline-white pink lighten-4 waves-effect ml-auto" data-dismiss="modal">Close <i class="fa fa-times-circle ml-1"></i></button>
                         </div>

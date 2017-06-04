@@ -149,7 +149,7 @@ function signup(eID, pID) {
     }).done(function(data) { // success method
         switch (data) {
             case '0':
-                window.location.href = 'addListing.php';
+                window.location.href = 'shop.php';
                 break;
             case '1':
                 emailInput.addClass('invalid').removeClass('valid');
