@@ -370,7 +370,7 @@ function editItem(id) {
 function getCatData(cat = ""){
     category = cat;
     outputHTML = "";
-    formData = {category:category};
+    formData = {category:category ,seller:'yes'};
     $.post({
         url : "accessDatabase.php",
         data : formData,
