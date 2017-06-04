@@ -330,7 +330,7 @@ $("#insertItemForm").submit(function (e) {
 
 function checkout() {
     if ($('#new').checked) {
-        formData =$('#newAddress').serialize();
+        formData = $('#newAddress').serialize();
         $.post({
             url: 'addAddress.php',
             data: formData,

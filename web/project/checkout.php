@@ -40,6 +40,12 @@ global $db;
                                     <form action="addAddress.php" method="post" id="newAddress" class="hidden">
                                         <div class="col-lg-12">
                                             <div class="md-form">
+                                                <input type="text" name="name" id="new-name" class="form-control validate">
+                                                <label for="new-address-name">Shipping Profile Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="md-form">
                                                 <input type="text" name="address-name" id="new-address-name" class="form-control validate">
                                                 <label for="new-address-name">Name</label>
                                             </div>
